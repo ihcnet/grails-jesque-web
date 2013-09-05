@@ -2,7 +2,7 @@ package grails.plugin.jesqueweb
 
 class JesqueQueuesController extends JesqueController {
 
-    def index = {
+    def index() {
         def model = [:]
 
         model.queueList = queueInfoDao.queueInfos
@@ -11,7 +11,7 @@ class JesqueQueuesController extends JesqueController {
         model
     }
 
-    def detail = {
+    def detail() {
         def queueName = params.id
         def offset = params.offset?.isInteger() ? params.offset.toInteger() : 0
         def max = params.max?.isInteger() ? params.max.toInteger() : 20
@@ -19,7 +19,7 @@ class JesqueQueuesController extends JesqueController {
 
         model.offset = offset
         model.max = max
-        
+
         model.queueName = queueName
 
         model.subTabs = queueInfoDao.queueNames
@@ -31,11 +31,11 @@ class JesqueQueuesController extends JesqueController {
         model
     }
 
-    def remove = {
+    def remove() {
         def queueName = params.id
 
         queueInfoDao.removeQueue(queueName)
 
-        redirect action:index
+        redirect(action: 'index')
     }
 }

@@ -4,9 +4,6 @@ class JesqueWorkersController extends JesqueController {
 
     def index = {
         def model = [:]
-        model.tabs = tabs
-        model.activeTab = "Workers"
-
         def hostMap = workerInfoDao.workerHostMap
         def viewName
         if (hostMap.size() == 1) {
@@ -23,9 +20,6 @@ class JesqueWorkersController extends JesqueController {
 
     def detail = {
         def model = [:]
-        model.tabs = tabs
-        model.activeTab = "Workers"
-
         def workerName = params.id
         def workerInfo = workerInfoDao.getWorker(workerName)
         def hostMap = workerInfoDao.workerHostMap
