@@ -47,7 +47,12 @@
                         <g:link controller="jesqueWorkers"><g:message code="jesque.web.nav.workers"/></g:link>
                     </li>
                     <li class="${controllerName == 'jesqueStats' ? 'active' : ''}">
-                        <g:link controller="jesqueStats"><g:message code="jesque.web.nav.stats"/></g:link>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><g:message code="jesque.web.nav.stats"/> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><g:link controller="jesqueStats" action="detail" id="redis"><g:message code="jesque.web.nav.stats.redis"/></g:link></li>
+                            <li><g:link controller="jesqueStats" action="detail" id="resque"><g:message code="jesque.web.nav.stats.resque"/></g:link></li>
+                            <li><g:link controller="jesqueStats" action="detail" id="keys"><g:message code="jesque.web.nav.stats.keys"/></g:link></li>
+                        </ul>
                     </li>
                     <li class="${controllerName == 'jesqueScheduled' ? 'active' : ''}">
                         <g:link controller="jesqueScheduled"><g:message code="jesque.web.nav.scheduled"/></g:link>
@@ -89,7 +94,8 @@
         });
     </g:javascript>
     <footer>
-        Powered by <a href="https://github.com/gresrun/jesque">Jesque</a> and <a href="http://getbootstrap.com/">Bootstrap</a> - Connected to Redis namespace ${namespace} on ${redisUri}
+        Powered by <a href="https://github.com/gresrun/jesque">Jesque</a> and <a
+            href="http://getbootstrap.com/">Bootstrap</a> - Connected to Redis namespace ${namespace} on ${redisUri}
     </footer>
 </div>
 </body>

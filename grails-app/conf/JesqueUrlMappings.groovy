@@ -22,7 +22,8 @@ class JesqueUrlMappings {
         "/jesque/workers/details/$id"(controller: 'jesqueWorkers', action: 'detail')
         "/jesque/workers/remove/$id"(controller: 'jesqueWorkers', action: 'remove')
 
-        "/jesque/stats"(controller: 'jesqueStats')
+        "/jesque/stats/$id"(controller: 'jesqueStats', action: 'detail')
+        "/jesque/stats/keys/$id"(controller: 'jesqueStats', action: 'keys')
 
         "/jesque/scheduled"(controller: 'jesqueScheduled')
     }

@@ -4,24 +4,11 @@ import net.greghaines.jesque.meta.KeyType
 
 class JesqueStatsController extends JesqueController {
 
-    def index = {
-        redirect action:detail, id:params.statType
-    }
-
-    def detail = {
-        def statType = params.id
-        if( !statType ) {
-            redirect(action:detail, id:"redis")
-            return
-        }
-
+    def detail(String id) {
+        if (!id)
+            id = 'redis'
         def model = [:]
-        model.tabs = tabs
-        model.activeTab = "Stats"
-        model.subTabs = ["resque", "redis", "keys"]
-        model.activeSubTab = statType
-
-        switch(statType) {
+        switch (id) {
             case "resque":
                 model.title = "Resque Client connected to $jesqueConfig.URI"
                 model.stats = createResqueStats()
@@ -39,8 +26,7 @@ class JesqueStatsController extends JesqueController {
         model
     }
 
-    def keys = {
-        def key = params.id
+    def keys(String id) {
         def offset = params.offset
         def max = params.max
         offset = offset?.isInteger() ? offset.toInteger() : 0
@@ -48,17 +34,12 @@ class JesqueStatsController extends JesqueController {
 
         def model = [:]
 
-        model.tabs = tabs
-        model.activeTab = "Stats"
-        model.subTabs = ["resque", "redis", "keys"]
-        model.activeSubTab = "keys"
-
         def viewName
-        def keyInfo = keysDao.getKeyInfo(jesqueConfig.namespace + ':' + key, offset, max)
-        if(!keyInfo) {
+        def keyInfo = keysDao.getKeyInfo(jesqueConfig.namespace + ':' + id, offset, max)
+        if (!keyInfo) {
             viewName = 'keyString'
-            model.keyName = key
-        } else if(keyInfo.type == KeyType.STRING) {
+            model.keyName = id
+        } else if (keyInfo.type == KeyType.STRING) {
             viewName = 'keyString'
             model.key = keyInfo
         } else {
@@ -69,14 +50,14 @@ class JesqueStatsController extends JesqueController {
             model.total = keyInfo.size
         }
 
-        render view:viewName, model:model
+        render(view: viewName, model: model)
     }
 
-    private Map<String,Object> createResqueStats() {
+    private Map<String, Object> createResqueStats() {
         def resqueStats = [:]
         resqueStats.environment = "development"
         resqueStats.failed = failureDao.count
-        resqueStats.pending =  queueInfoDao.pendingCount
+        resqueStats.pending = queueInfoDao.pendingCount
         resqueStats.processed = queueInfoDao.processedCount
         resqueStats.queues = queueInfoDao.queueNames.size()
         resqueStats.servers = "[ $jesqueConfig.URI ]"
