@@ -27,8 +27,7 @@
                 <g:each in="${working}" var="worker">
                     <tr>
                         <td>
-                            <g:img dir="images" file="${worker.state.name().toLowerCase()}.png" alt="${worker.state.name().toLowerCase()}"
-                                   title="${worker.state.name().toLowerCase()}"/>
+                            <jesque:stateImg state="${worker.state.name().toLowerCase()}"/>
                         </td>
                         <td><g:link controller="jesqueWorkers" action="detail"
                                     id="${worker}">${worker.host}:${worker.pid}</g:link></td>

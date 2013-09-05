@@ -35,4 +35,11 @@ class JesqueTagLib {
             out << jobFailure.backtrace?.join("\n")
         }
     }
+
+    def stateImg = {attr ->
+        def state = attr.state
+        if(!state)
+            throw new RuntimeException('No state defined')
+        out << g.img(dir: 'images', file: "${state}.png", alt: state, title: state)
+    }
 }

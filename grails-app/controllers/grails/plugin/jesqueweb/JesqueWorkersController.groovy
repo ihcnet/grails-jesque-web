@@ -2,7 +2,7 @@ package grails.plugin.jesqueweb
 
 class JesqueWorkersController extends JesqueController {
 
-    def index = {
+    def index() {
         def model = [:]
         def hostMap = workerInfoDao.workerHostMap
         def viewName
@@ -15,46 +15,44 @@ class JesqueWorkersController extends JesqueController {
             model.totalWorkerCount = hostMap.values().flatten().size()
         }
 
-        render view:viewName, model:model
+        render(view: viewName, model: model)
     }
 
-    def detail = {
+    def detail(String id) {
         def model = [:]
-        def workerName = params.id
-        def workerInfo = workerInfoDao.getWorker(workerName)
+        def workerInfo = workerInfoDao.getWorker(id)
         def hostMap = workerInfoDao.workerHostMap
         def viewName
 
-        if( workerInfo ) {
+        if (workerInfo) {
             viewName = 'detail'
             model.activeSubTab = workerInfo.host
             model.worker = workerInfo
-        } else if(workerName == 'all') {
+        } else if (id == 'all') {
             viewName = 'singleHost'
             model.workers = hostMap.values().asList().flatten()
-        } else if(hostMap[workerName]) {
+        } else if (hostMap[id]) {
             viewName = 'singleHost'
-            model.workers = hostMap[workerName]
+            model.workers = hostMap[id]
         } else {
-            redirect action:index
+            redirect(action: 'index')
         }
         model.activeSubTabs = hostMap.keySet()
         model.subTabs = hostMap.size() > 1 ? hostMap.keySet() : null
 
-        render view:viewName, model:model
+        render view: viewName, model: model
     }
 
-    def remove = {
-        def workerName = params.id
+    def remove(String id) {
 
-        def workerInfo = workerInfoDao.getWorker(workerName)
+        def workerInfo = workerInfoDao.getWorker(id)
 
-        if( workerInfo )
-            workerInfoDao.removeWorker(workerName)
+        if (workerInfo)
+            workerInfoDao.removeWorker(id)
 
-        if( workerInfoDao.workerHostMap[workerInfo.host] )
-            redirect action:detail, id:workerInfo.host
+        if (workerInfoDao.workerHostMap[workerInfo.host])
+            redirect(action: 'detail', id: workerInfo.host)
         else
-            redirect action:index
+            redirect(action: 'index')
     }
 }
