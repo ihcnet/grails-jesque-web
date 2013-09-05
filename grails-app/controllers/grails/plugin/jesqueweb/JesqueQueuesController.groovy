@@ -5,9 +5,6 @@ class JesqueQueuesController extends JesqueController {
     def index = {
         def model = [:]
 
-        model.tabs = tabs
-        model.activeTab = "Queues"
-
         model.queueList = queueInfoDao.queueInfos
         model.totalFailureCount = failureDao.count
 
@@ -24,8 +21,6 @@ class JesqueQueuesController extends JesqueController {
         model.max = max
         
         model.queueName = queueName
-        model.tabs = tabs
-        model.activeTab = "Queues"
 
         model.subTabs = queueInfoDao.queueNames
         model.activeSubTab = queueName

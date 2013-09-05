@@ -2,12 +2,10 @@ package grails.plugin.jesqueweb
 
 class JesqueFailedController extends JesqueController {
 
-    def index = {
+    def index() {
         def offset = params.offset?.isInteger() ? params.offset.toInteger() : 0
-        def max = params.max?.isInteger() ? params.max.toInteger() : 20
+        def max = params.max?.isInteger() ? params.max.toInteger() : 10
         def model = [:]
-        model.tabs = tabs
-        model.activeTab = "Failed"
 
         model.offset = offset
         model.max = max
@@ -18,33 +16,29 @@ class JesqueFailedController extends JesqueController {
         model
     }
 
-    def requeue = {
-        String id = params.id
-        if( id.isLong() )
-            failureDao.requeue(id.toLong())
+    def requeue(long id) {
+        failureDao.requeue(id.toLong())
 
-        redirect action:index
+        redirect(action: 'index')
     }
 
-    def remove = {
-        String id = params.id
-        if( id.isLong() )
-            failureDao.remove(id.toLong())
+    def remove(long id) {
+        failureDao.remove(id.toLong())
 
-        redirect action:index
+        redirect(action: 'index')
     }
 
-    def clear = {
+    def clear() {
         failureDao.clear()
 
-        redirect action:index
+        redirect(action: 'index')
     }
 
-    def retryAll = {
-        failureDao.count.times{
+    def retryAll() {
+        failureDao.count.times {
             failureDao.requeue(it)
         }
 
-        redirect action:index
+        redirect(action: 'index')
     }
 }

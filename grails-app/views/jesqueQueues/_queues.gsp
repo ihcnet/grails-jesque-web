@@ -23,8 +23,8 @@
                     <td>${queue.size}</td>
                 </tr>
             </g:each>
-            <tr class="clickable ${totalFailureCount == 0 ? 'success' : 'error'}" data-target="${g.createLink(controller: 'jesqueFailed')}">
-                <td><g:message code="jesque.web.queues.label.failed"/></td>
+            <tr class="clickable ${totalFailureCount == 0 ? 'success' : 'danger'}" data-target="${g.createLink(controller: 'jesqueFailed')}">
+                <td><strong><g:message code="jesque.web.queues.label.failed"/></strong></td>
                 <td>${totalFailureCount}</td>
             </tr>
         </table>

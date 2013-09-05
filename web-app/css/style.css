@@ -1,0 +1,25 @@
+.clickable {
+	cursor: pointer;
+}
+
+a.step, span.currentStep {
+	padding: 4px;
+}
+
+a.step:hover {
+	text-decoration: none;
+}
+
+footer {
+	background: #222;
+	color: #666 !important;
+	text-align: center;
+}
+
+body {
+	background: #222 !important;
+}
+
+.wrap {
+	background: #fff;
+}
