@@ -1,14 +1,21 @@
 class JesqueUrlMappings {
 
     static mappings = {
-        "/jesque/overview/$action?/$id?" { controller = "jesqueOverview" }
-        "/jesque/queues/$action?/$id?" { controller = "jesqueQueues" }
-        "/jesque/failed/$action?/$id?" { controller = "jesqueFailed" }
-        "/jesque/stats/$action?/$id?" { controller = "jesqueStats" }
-        "/jesque/workers/$action?/$id?" { controller = "jesqueWorkers" }
-        "/jesque/working/$action?/$id?" { controller = "jesqueWorking" }
-        "/jesque/scheduled/$action?/$id?" { controller = "jesqueScheduled" }
+        "/jesque"(controller: 'jesqueOverview')
 
-        "/jesque" (controller: "jesqueOverview")
+        "/jesque/overview"(controller: 'jesqueOverview')
+
+        "/jesque/working"(controller: 'jesqueWorking')
+
+        "/jesque/failed"(controller: 'jesqueFailed')
+
+        "/jesque/queues"(controller: 'jesqueQueues')
+        "/jesque/queues/details/$id"(controller: 'jesqueQueues', action: 'detail')
+
+        "/jesque/workers"(controller: 'jesqueWorkers')
+
+        "/jesque/stats"(controller: 'jesqueStats')
+
+        "/jesque/scheduled"(controller: 'jesqueScheduled')
     }
 }
