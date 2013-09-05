@@ -17,6 +17,12 @@ class JesqueQueuesController extends JesqueController {
         def max = params.max?.isInteger() ? params.max.toInteger() : 20
         def model = [:]
 
+        def queue = queueInfoDao.getQueueInfo(queueName, offset, max)
+        if (!queue) {
+            redirect(action: 'index')
+            return
+        }
+
         model.offset = offset
         model.max = max
 
@@ -25,16 +31,14 @@ class JesqueQueuesController extends JesqueController {
         model.subTabs = queueInfoDao.queueNames
         model.activeSubTab = queueName
 
-        model.queue = queueInfoDao.getQueueInfo(queueName, offset, max)
+        model.queue = queue
         model.total = model.queue.size
 
         model
     }
 
-    def remove() {
-        def queueName = params.id
-
-        queueInfoDao.removeQueue(queueName)
+    def remove(String id) {
+        queueInfoDao.removeQueue(id)
 
         redirect(action: 'index')
     }
