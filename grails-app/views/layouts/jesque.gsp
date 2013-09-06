@@ -79,7 +79,7 @@
     </div>
     <g:javascript>
         $(document).ready(function () {
-            $('.clickable').dblclick(function () {
+            $('.clickable').click(function () {
                 window.location = $(this).data('target');
             });
             $('.toggle').click(function () {
