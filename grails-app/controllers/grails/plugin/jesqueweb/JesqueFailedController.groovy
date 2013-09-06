@@ -9,34 +9,34 @@ class JesqueFailedController extends JesqueController {
 
         model.offset = offset
         model.max = max
-        model.fullFailureCount = failureDao.count
+        model.fullFailureCount = jesqueFailureService.count
         model.total = model.fullFailureCount
-        model.failures = failureDao.getFailures(offset, max)
+        model.failures = jesqueFailureService.getFailures(offset, max)
 
         model
     }
 
     def requeue(long id) {
-        failureDao.requeue(id.toLong())
+        jesqueFailureService.requeue(id.toLong())
 
         redirect(action: 'index')
     }
 
     def remove(long id) {
-        failureDao.remove(id.toLong())
+        jesqueFailureService.remove(id.toLong())
 
         redirect(action: 'index')
     }
 
     def clear() {
-        failureDao.clear()
+        jesqueFailureService.clear()
 
         redirect(action: 'index')
     }
 
     def retryAll() {
-        failureDao.count.times {
-            failureDao.requeue(it)
+        jesqueFailureService.count.times {
+            jesqueFailureService.requeue(it)
         }
 
         redirect(action: 'index')

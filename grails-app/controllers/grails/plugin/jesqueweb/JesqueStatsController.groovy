@@ -55,7 +55,7 @@ class JesqueStatsController extends JesqueController {
     private Map<String, Object> createResqueStats() {
         def resqueStats = [:]
         resqueStats.environment = "development"
-        resqueStats.failed = failureDao.count
+        resqueStats.failed = jesqueFailureService.count
         resqueStats.pending = queueInfoDao.pendingCount
         resqueStats.processed = queueInfoDao.processedCount
         resqueStats.queues = queueInfoDao.queueNames.size()

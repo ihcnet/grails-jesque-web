@@ -6,7 +6,7 @@ class JesqueQueuesController extends JesqueController {
         def model = [:]
 
         model.queueList = queueInfoDao.queueInfos
-        model.totalFailureCount = failureDao.count
+        model.totalFailureCount = jesqueFailureService.count
 
         model
     }
