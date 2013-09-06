@@ -36,6 +36,7 @@ class JesqueWorkersController extends JesqueController {
             model.workers = hostMap[id]
         } else {
             redirect(action: 'index')
+            return
         }
         model.activeSubTabs = hostMap.keySet()
         model.subTabs = hostMap.size() > 1 ? hostMap.keySet() : null

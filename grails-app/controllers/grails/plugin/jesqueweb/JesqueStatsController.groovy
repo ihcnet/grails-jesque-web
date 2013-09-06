@@ -10,19 +10,18 @@ class JesqueStatsController extends JesqueController {
         def model = [:]
         switch (id) {
             case "resque":
-                model.title = "Resque Client connected to $jesqueConfig.URI"
+                model.title = g.message(code: 'jesque.web.stats.resque.intro', args: [jesqueConfigService.uri])
                 model.stats = createResqueStats()
                 break
             case "redis":
-                model.title = jesqueConfig.URI
+                model.title = g.message(code: 'jesque.web.stats.redis.intro', args: [jesqueConfigService.uri])
                 model.stats = keysDao.redisInfo
                 break
             case "keys":
-                model.title = "Keys owned by Resque Client connected to $jesqueConfig.URI"
+                model.title = g.message(code: 'jesque.web.stats.keys.intro', args: [jesqueConfigService.uri])
                 model.keys = keysDao.keyInfos
                 break
         }
-
         model
     }
 
@@ -35,7 +34,7 @@ class JesqueStatsController extends JesqueController {
         def model = [:]
 
         def viewName
-        def keyInfo = keysDao.getKeyInfo(jesqueConfig.namespace + ':' + id, offset, max)
+        def keyInfo = keysDao.getKeyInfo(jesqueConfigService.namespace + ':' + id, offset, max)
         if (!keyInfo) {
             viewName = 'keyString'
             model.keyName = id
@@ -60,7 +59,7 @@ class JesqueStatsController extends JesqueController {
         resqueStats.pending = queueInfoDao.pendingCount
         resqueStats.processed = queueInfoDao.processedCount
         resqueStats.queues = queueInfoDao.queueNames.size()
-        resqueStats.servers = "[ $jesqueConfig.URI ]"
+        resqueStats.servers = "[ $jesqueConfigService.uri ]"
         resqueStats.workers = workerInfoDao.workerCount
         resqueStats.working = workerInfoDao.activeWorkerCount
         return resqueStats
