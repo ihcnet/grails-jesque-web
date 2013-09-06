@@ -6,8 +6,8 @@ class JesqueOverviewController extends JesqueController {
         [
                 queueList: jesqueQueueInfoService.queueInfos,
                 totalFailureCount: jesqueFailureService.count,
-                working: workerInfoDao.activeWorkers,
-                totalWorkerCount: workerInfoDao.workerCount
+                working: jesqueWorkerInfoService.activeWorkers,
+                totalWorkerCount: jesqueWorkerInfoService.workerCount
         ]
     }
 

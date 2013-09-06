@@ -5,8 +5,8 @@ class JesqueWorkingController extends JesqueController {
     def index() {
         def model = [:]
 
-        model.working = workerInfoDao.activeWorkers
-        model.totalWorkerCount = workerInfoDao.workerCount
+        model.working = jesqueWorkerInfoService.activeWorkers
+        model.totalWorkerCount = jesqueWorkerInfoService.workerCount
 
         model
     }

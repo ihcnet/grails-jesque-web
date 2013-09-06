@@ -4,7 +4,7 @@ class JesqueWorkersController extends JesqueController {
 
     def index() {
         def model = [:]
-        def hostMap = workerInfoDao.workerHostMap
+        def hostMap = jesqueWorkerInfoService.workerHostMap
         def viewName
         if (hostMap.size() == 1) {
             viewName = 'singleHost'
@@ -20,8 +20,8 @@ class JesqueWorkersController extends JesqueController {
 
     def detail(String id) {
         def model = [:]
-        def workerInfo = workerInfoDao.getWorker(id)
-        def hostMap = workerInfoDao.workerHostMap
+        def workerInfo = jesqueWorkerInfoService.getWorker(id)
+        def hostMap = jesqueWorkerInfoService.workerHostMap
         def viewName
 
         if (workerInfo) {
@@ -46,12 +46,12 @@ class JesqueWorkersController extends JesqueController {
 
     def remove(String id) {
 
-        def workerInfo = workerInfoDao.getWorker(id)
+        def workerInfo = jesqueWorkerInfoService.getWorker(id)
 
         if (workerInfo)
-            workerInfoDao.removeWorker(id)
+            jesqueWorkerInfoService.removeWorker(id)
 
-        if (workerInfoDao.workerHostMap[workerInfo.host])
+        if (jesqueWorkerInfoService.workerHostMap[workerInfo.host])
             redirect(action: 'detail', id: workerInfo.host)
         else
             redirect(action: 'index')

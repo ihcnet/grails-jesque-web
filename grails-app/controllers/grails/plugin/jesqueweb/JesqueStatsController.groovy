@@ -15,11 +15,11 @@ class JesqueStatsController extends JesqueController {
                 break
             case "redis":
                 model.title = g.message(code: 'jesque.web.stats.redis.intro', args: [jesqueConfigService.uri])
-                model.stats = keysDao.redisInfo
+                model.stats = jesqueKeysService.redisInfo
                 break
             case "keys":
                 model.title = g.message(code: 'jesque.web.stats.keys.intro', args: [jesqueConfigService.uri])
-                model.keys = keysDao.keyInfos
+                model.keys = jesqueKeysService.keyInfos
                 break
         }
         model
@@ -34,7 +34,7 @@ class JesqueStatsController extends JesqueController {
         def model = [:]
 
         def viewName
-        def keyInfo = keysDao.getKeyInfo(jesqueConfigService.namespace + ':' + id, offset, max)
+        def keyInfo = jesqueKeysService.getKeyInfo(jesqueConfigService.namespace + ':' + id, offset, max)
         if (!keyInfo) {
             viewName = 'keyString'
             model.keyName = id
@@ -56,12 +56,12 @@ class JesqueStatsController extends JesqueController {
         def resqueStats = [:]
         resqueStats.environment = "development"
         resqueStats.failed = jesqueFailureService.count
-        resqueStats.pending = jesqueConfigService.pendingCount
-        resqueStats.processed = jesqueConfigService.processedCount
-        resqueStats.queues = jesqueConfigService.queueNames.size()
+        resqueStats.pending = jesqueQueueInfoService.pendingCount
+        resqueStats.processed = jesqueQueueInfoService.processedCount
+        resqueStats.queues = jesqueQueueInfoService.queueNames.size()
         resqueStats.servers = "[ $jesqueConfigService.uri ]"
-        resqueStats.workers = workerInfoDao.workerCount
-        resqueStats.working = workerInfoDao.activeWorkerCount
+        resqueStats.workers = jesqueWorkerInfoService.workerCount
+        resqueStats.working = jesqueWorkerInfoService.activeWorkerCount
         return resqueStats
     }
 }
