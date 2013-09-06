@@ -4,7 +4,7 @@ class JesqueOverviewController extends JesqueController {
 
     def index() {
         [
-                queueList: queueInfoDao.queueInfos,
+                queueList: jesqueQueueInfoService.queueInfos,
                 totalFailureCount: jesqueFailureService.count,
                 working: workerInfoDao.activeWorkers,
                 totalWorkerCount: workerInfoDao.workerCount

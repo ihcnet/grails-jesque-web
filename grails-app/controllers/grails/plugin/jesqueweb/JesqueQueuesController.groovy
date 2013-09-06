@@ -5,7 +5,7 @@ class JesqueQueuesController extends JesqueController {
     def index() {
         def model = [:]
 
-        model.queueList = queueInfoDao.queueInfos
+        model.queueList = jesqueQueueInfoService.queueInfos
         model.totalFailureCount = jesqueFailureService.count
 
         model
@@ -17,7 +17,7 @@ class JesqueQueuesController extends JesqueController {
         def max = params.max?.isInteger() ? params.max.toInteger() : 20
         def model = [:]
 
-        def queue = queueInfoDao.getQueueInfo(queueName, offset, max)
+        def queue = jesqueQueueInfoService.getQueueInfo(queueName, offset, max)
         if (!queue) {
             redirect(action: 'index')
             return
@@ -28,7 +28,7 @@ class JesqueQueuesController extends JesqueController {
 
         model.queueName = queueName
 
-        model.subTabs = queueInfoDao.queueNames
+        model.subTabs = jesqueQueueInfoService.queueNames
         model.activeSubTab = queueName
 
         model.queue = queue
@@ -38,7 +38,7 @@ class JesqueQueuesController extends JesqueController {
     }
 
     def remove(String id) {
-        queueInfoDao.removeQueue(id)
+        jesqueQueueInfoService.removeQueue(id)
 
         redirect(action: 'index')
     }
