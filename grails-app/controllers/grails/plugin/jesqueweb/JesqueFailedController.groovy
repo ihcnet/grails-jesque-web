@@ -16,6 +16,10 @@ class JesqueFailedController extends JesqueController {
         model
     }
 
+    def count(){
+        jsonRender([failed: jesqueFailureService.count])
+    }
+
     def requeue(long id) {
         jesqueFailureService.requeue(id.toLong())
 

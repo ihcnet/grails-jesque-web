@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css')}">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.js"></script>
+    <script src="${g.resource(dir: 'js', file: 'jesque.js')}"></script>
 </head>
 
 <body>
@@ -77,26 +79,27 @@
         <g:layoutBody/>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     </div>
-    <g:javascript>
-        $(document).ready(function () {
-            $('.clickable').click(function () {
-                window.location = $(this).data('target');
-            });
-            $('.toggle').click(function () {
-                var $this = $($(this).data('target'));
-                if ($this)
-                    if ($this.hasClass('hidden'))
-                        $this.removeClass('hidden');
-                    else
-                        $this.addClass('hidden');
-                return false;
-            })
-        });
-    </g:javascript>
     <footer>
         Powered by <a href="https://github.com/gresrun/jesque">Jesque</a> and <a
             href="http://getbootstrap.com/">Bootstrap</a> - Connected to Redis namespace ${namespace} on ${redisUri}
     </footer>
 </div>
+<g:javascript>
+    $(document).ready(function () {
+
+        $(".table").on("click", ".clickable", function () {
+            window.location = $(this).data('target');
+        });
+        $('.toggle').click(function () {
+            var $this = $($(this).data('target'));
+            if ($this)
+                if ($this.hasClass('hidden'))
+                    $this.removeClass('hidden');
+                else
+                    $this.addClass('hidden');
+            return false;
+        })
+    });
+</g:javascript>
 </body>
 </html>

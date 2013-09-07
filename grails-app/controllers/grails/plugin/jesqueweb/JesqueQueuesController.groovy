@@ -11,13 +11,16 @@ class JesqueQueuesController extends JesqueController {
         model
     }
 
-    def detail() {
-        def queueName = params.id
+    def list() {
+        jsonRender([queues: jesqueQueueInfoService.queueInfos])
+    }
+
+    def detail(String id) {
         def offset = params.offset?.isInteger() ? params.offset.toInteger() : 0
         def max = params.max?.isInteger() ? params.max.toInteger() : 20
         def model = [:]
 
-        def queue = jesqueQueueInfoService.getQueueInfo(queueName, offset, max)
+        def queue = jesqueQueueInfoService.getQueueInfo(id, offset, max)
         if (!queue) {
             redirect(action: 'index')
             return
@@ -26,15 +29,19 @@ class JesqueQueuesController extends JesqueController {
         model.offset = offset
         model.max = max
 
-        model.queueName = queueName
-
-        model.subTabs = jesqueQueueInfoService.queueNames
-        model.activeSubTab = queueName
+        model.queueName = id
 
         model.queue = queue
         model.total = model.queue.size
 
         model
+    }
+
+    def work(String id) {
+        def offset = params.offset?.isInteger() ? params.offset.toInteger() : 0
+        def max = params.max?.isInteger() ? params.max.toInteger() : 20
+        def queue = jesqueQueueInfoService.getQueueInfo(id, offset, max)
+        jsonRender([queue: queue ?: []])
     }
 
     def remove(String id) {

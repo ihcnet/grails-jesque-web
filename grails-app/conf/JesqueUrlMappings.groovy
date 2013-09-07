@@ -11,11 +11,16 @@ class JesqueUrlMappings {
         "/jesque/failed"(controller: 'jesqueFailed')
         "/jesque/failed/retryAll"(controller: 'jesqueFailed', action: 'retryAll')
         "/jesque/failed/clear"(controller: 'jesqueFailed', action: 'clear')
+        "/jesque/failed/count"(controller: 'jesqueFailed', action: 'count')
         "/jesque/failed/remove/$id"(controller: 'jesqueFailed', action: 'remove')
         "/jesque/failed/requeue/$id"(controller: 'jesqueFailed', action: 'requeue')
 
         "/jesque/queues"(controller: 'jesqueQueues')
+        "/jesque/queues/list"(controller: 'jesqueQueues', action: 'list')
+        "/jesque/queues/failed"(controller: 'jesqueQueues', action: 'failed')
+        "/jesque/queues/details"(controller: 'jesqueQueues', action: 'detail')
         "/jesque/queues/details/$id"(controller: 'jesqueQueues', action: 'detail')
+        "/jesque/queues/work/$id"(controller: 'jesqueQueues', action: 'work')
         "/jesque/queues/remove/$id"(controller: 'jesqueQueues', action: 'remove')
 
         "/jesque/workers"(controller: 'jesqueWorkers')

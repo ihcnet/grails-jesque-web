@@ -17,16 +17,15 @@
                 <th><g:message code="jesque.web.queues.column.jobs"/></th>
             </tr>
             </thead>
-            <g:each in="${queueList}" var="queue">
-                <tr class="clickable" data-target="${g.createLink(controller: 'jesqueQueues', action: 'detail', id: queue)}">
-                    <td>${queue}</td>
-                    <td>${queue.size}</td>
-                </tr>
-            </g:each>
+            <tbody class="queues">
+
+            </tbody>
+            <tfoot class="queues">
             <tr class="clickable ${totalFailureCount == 0 ? 'success' : 'danger'}" data-target="${g.createLink(controller: 'jesqueFailed')}">
                 <td><strong><g:message code="jesque.web.queues.label.failed"/></strong></td>
                 <td>${totalFailureCount}</td>
             </tr>
+            </tfoot>
         </table>
     </div>
 </div>

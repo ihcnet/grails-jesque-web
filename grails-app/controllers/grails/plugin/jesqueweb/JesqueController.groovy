@@ -1,4 +1,5 @@
 package grails.plugin.jesqueweb
+
 import grails.plugin.jesque.TriggerDaoService
 
 abstract class JesqueController {
@@ -16,6 +17,12 @@ abstract class JesqueController {
         model.version = jesqueConfigService.version
         model.namespace = jesqueConfigService.namespace
         model.redisUri = jesqueConfigService.uri
+    }
+
+    protected void jsonRender(model) {
+        render(contentType: 'application/json') {
+            model
+        }
     }
 
 }
