@@ -40,13 +40,6 @@
 
 <g:render template="/jesqueWorking/working"/>
 
-
-<div class="row">
-    <div class="col-md-12">
-        <input type="number" name="intervall" id="intervall"/><button class="btn btn-sm btn-info" onclick="intervall = $('#intervall').val()"><span
-            class="glyphicon glyphicon-refresh"></span></button>
-    </div>
-</div>
 <script id="queues-body" type="text/x-handlebars-template">
     {{#each queues}}
     <tr class="clickable" data-target="${g.createLink(controller: 'jesqueQueues', action: 'detail')}/{{name}}">
@@ -56,13 +49,12 @@
     {{/each}}
 </script>
 <script id="failed-body" type="text/x-handlebars-template">
-    <tr class="clickable {{#if author}}success{{else}}danger{{/if}} data-target="${g.createLink(controller: 'jesqueFailed')}">
+    <tr class="clickable {{#if author}}success{{else}}danger{{/if}}" data-target='${g.createLink(controller: 'jesqueFailed', action: 'index')}'>
     <td><strong><g:message code="jesque.web.queues.label.failed"/></strong></td>
     <td>{{failed}}</td>
 </tr>
 </script>
 <g:javascript>
-    var intervall = 5000;
     var failedTemplate
     var queuesTemplate
     function update() {

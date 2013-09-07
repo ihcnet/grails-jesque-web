@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <title><g:message code="jesque.web.title" args="${g.layoutTitle()}"/></title>
-    <link rel="shortcut icon" href="${img(dir: 'images', file: 'favicon.ico')}"/>
+    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}"/>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css')}">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -60,6 +60,13 @@
                         <g:link controller="jesqueScheduled"><g:message code="jesque.web.nav.scheduled"/></g:link>
                     </li>
                 </ul>
+
+                <form class="navbar-form navbar-left" onsubmit="updateIntervall();
+                return false;">
+                    <div class="form-group">
+                        <input type="number" step="50" min="50" name="intervall" id="intervall"/>
+                    </div>
+                </form>
             </nav>
         </div>
     </header>
@@ -84,22 +91,5 @@
             href="http://getbootstrap.com/">Bootstrap</a> - Connected to Redis namespace ${namespace} on ${redisUri}
     </footer>
 </div>
-<g:javascript>
-    $(document).ready(function () {
-
-        $(".table").on("click", ".clickable", function () {
-            window.location = $(this).data('target');
-        });
-        $('.toggle').click(function () {
-            var $this = $($(this).data('target'));
-            if ($this)
-                if ($this.hasClass('hidden'))
-                    $this.removeClass('hidden');
-                else
-                    $this.addClass('hidden');
-            return false;
-        })
-    });
-</g:javascript>
 </body>
 </html>

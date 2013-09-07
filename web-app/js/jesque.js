@@ -1,4 +1,38 @@
-var paginate = function(pagination, options) {
+var intervall = 1000;
+
+function updateIntervall() {
+    intervall = $('#intervall').val()
+    localStorage.setItem('jesqueIntervall', intervall);
+    return false;
+}
+
+$(document).ready(function () {
+    var fromStorage = localStorage.getItem("jesqueIntervall");
+    if (fromStorage) {
+        intervall = fromStorage
+    }
+
+    $(".table").on("click", ".clickable", function () {
+        window.location = $(this).data('target');
+    });
+
+    $('.toggle').click(function () {
+        var $this = $($(this).data('target'));
+        if ($this)
+            if ($this.hasClass('hidden'))
+                $this.removeClass('hidden');
+            else
+                $this.addClass('hidden');
+        return false;
+    })
+
+    $('#intervall').val(intervall)
+    $('#intervall').change(function(){
+        updateIntervall()
+    });
+});
+
+var paginate = function (pagination, options) {
     var type = options.hash.type || 'middle';
     var ret = '';
     var pageCount = pagination.pageCount;

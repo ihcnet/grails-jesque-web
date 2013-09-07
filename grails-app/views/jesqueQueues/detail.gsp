@@ -53,25 +53,15 @@
     </tr>
     {{/if}}
 </script>
-%{--<script id="paginate-template" type="text/x-handlebars-template">--}%
-
-%{--<li><a href="#" onclick="currentPage > 1 ? currentPage-- : currentPage; update();return false;">&laquo;</a></li>--}%
-%{--{{#pager pages current}}--}%
-%{--<li class="{{#if @current}}active{{/if}}"><a href="#" >{{@index}}</a></li>--}%
-%{--{{/pager}}--}%
-%{--<li><a href="#" onclick="currentPage < pages ? currentPage++ : currentPage; update();return false;">&raquo;</a></li>--}%
-
-%{--</script>--}%
-
 <script id="paginate-template" type="text/x-handlebars-template">
     {{#paginate pagination type="previous"}}
-    <li class="{{#if disabled}}disabled{{/if}}"><a href="?p={{n}}">Prev</a></li>
+    <li class="{{#if disabled}}disabled{{/if}}"><a href="" onclick="previous(); return false;">Prev</a></li>
     {{/paginate}}
     {{#paginate pagination type="middle" limit="7"}}
-    <li class="{{#if active}}active{{/if}}"><a href="#" onclick="currentPage = {{n}}; update(); return false;">{{n}}</a></li>
+    <li class="{{#if active}}active{{/if}}"><a href="" onclick="setPage({{n}}); return false;">{{n}}</a></li>
     {{/paginate}}
     {{#paginate pagination type="next"}}
-    <li class="{{#if disabled}}disabled{{/if}}"><a href="?p={{n}}">Next</a></li>
+    <li class="{{#if disabled}}disabled{{/if}}"><a href="" onclick="next();return false;">Next</a></li>
     {{/paginate}}
 </div>
 </script>
@@ -84,10 +74,18 @@
     var pagerTemplate
 
     function setPage(newPage) {
-        if(newOffset > 0 && newOffset < total) {
-            offset = newOffset
-            update()
-        }
+        currentPage = newPage
+        update();
+    }
+
+    function previous(){
+        if(currentPage > 1)
+            setPage(currentPage-1)
+    }
+
+    function next(){
+        if(currentPage < pages)
+            setPage(currentPage+1)
     }
 
     function update(){

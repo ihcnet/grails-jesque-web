@@ -1,3 +1,7 @@
+.wrap {
+	padding-top: 55px !important;
+}
+
 .clickable {
 	cursor: pointer;
 }
