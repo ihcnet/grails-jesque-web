@@ -6,6 +6,7 @@ class JesqueUrlMappings {
         "/jesque/overview"(controller: 'jesqueOverview', action: 'index')
 
         "/jesque/working"(controller: 'jesqueWorking')
+        "/jesque/working/list"(controller: 'jesqueWorking', action: 'list')
         "/jesque/working/details/$id"(controller: 'jesqueWorking', action: 'detail')
 
         "/jesque/failed"(controller: 'jesqueFailed')

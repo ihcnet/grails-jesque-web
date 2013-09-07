@@ -27,7 +27,7 @@ $(document).ready(function () {
     })
 
     $('#intervall').val(intervall)
-    $('#intervall').change(function(){
+    $('#intervall').change(function () {
         updateIntervall()
     });
 });
@@ -93,5 +93,27 @@ var paginate = function (pagination, options) {
 
     return ret;
 };
+
+var ifCond = function (v1, operator, v2, options) {
+
+    switch (operator) {
+        case '==':
+            return (v1 == v2) ? options.fn(this) : options.inverse(this);
+        case '===':
+            return (v1 === v2) ? options.fn(this) : options.inverse(this);
+        case '<':
+            return (v1 < v2) ? options.fn(this) : options.inverse(this);
+        case '<=':
+            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+        case '>':
+            return (v1 > v2) ? options.fn(this) : options.inverse(this);
+        case '>=':
+            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+        default:
+            return options.inverse(this);
+    }
+}
+
+Handlebars.registerHelper('ifCond', ifCond);
 
 Handlebars.registerHelper('paginate', paginate);

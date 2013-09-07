@@ -61,8 +61,7 @@
                     </li>
                 </ul>
 
-                <form class="navbar-form navbar-left" onsubmit="updateIntervall();
-                return false;">
+                <form class="navbar-form navbar-left" onsubmit="updateIntervall(); return false;">
                     <div class="form-group">
                         <input type="number" step="50" min="50" name="intervall" id="intervall"/>
                     </div>

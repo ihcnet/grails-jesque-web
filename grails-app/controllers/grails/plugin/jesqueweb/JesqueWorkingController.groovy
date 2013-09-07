@@ -11,4 +11,8 @@ class JesqueWorkingController extends JesqueController {
         model
     }
 
+    def list() {
+        jsonRender([workers: jesqueWorkerInfoService.activeWorkers, total: jesqueWorkerInfoService.workerCount])
+    }
+
 }
