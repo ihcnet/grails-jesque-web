@@ -65,7 +65,7 @@
     {{/paginate}}
 </div>
 </script>
-<g:javascript>
+<script type="text/javascript">
     var offset = 0;
     var listSize = 20;
     var pages = 0
@@ -106,6 +106,6 @@
         pagerTemplate = Handlebars.compile($("#paginate-template").html());
         update();
     })
-</g:javascript>
+</script>
 </body>
 </html>
