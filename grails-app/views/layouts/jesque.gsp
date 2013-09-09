@@ -48,6 +48,8 @@
                     <li class="${controllerName == 'jesqueWorkers' ? 'active' : ''}">
                         <g:link controller="jesqueWorkers"><g:message code="jesque.web.nav.workers"/></g:link>
                     </li>
+                    <li>
+                    </li>
                     <li class="${controllerName == 'jesqueStats' ? 'active' : ''}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><g:message code="jesque.web.nav.stats"/> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -59,9 +61,17 @@
                     <li class="${controllerName == 'jesqueScheduled' ? 'active' : ''}">
                         <g:link controller="jesqueScheduled"><g:message code="jesque.web.nav.scheduled"/></g:link>
                     </li>
+                    <g:if test="${grailsApplication.config.grails.plugin.jesque.web.nav.custom}">
+                        <g:each in="${grailsApplication.config.grails.plugin.jesque.web.nav.custom}" var="item">
+                            <li class="${controllerName == "jesque${item}" ? 'active' : ''}">
+                                <g:link controller="jesque${item}"><g:message code="jesque.web.nav.${item.toLowerCase()}"/></g:link>
+                            </li>
+                        </g:each>
+                    </g:if>
                 </ul>
 
-                <form class="navbar-form navbar-left" onsubmit="updateIntervall(); return false;">
+                <form class="navbar-form navbar-left" onsubmit="updateIntervall();
+                return false;">
                     <div class="form-group">
                         <input type="number" step="50" min="50" name="intervall" id="intervall"/>
                     </div>
