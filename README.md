@@ -16,3 +16,13 @@ Release Notes
     * Further attempts to address grails compatibility issues
 * 0.4.0 - released 2012-05-31
     * Upgrade dependencies, including Jedis 2.1.0
+* 0.5.0 - major UI overhaul
+	* switched to Bootstrap3 for UI
+	* removed usage of DAOs from whithin controllers
+	* added services as DAO "wrappers"
+* 0.5.1 - Ajaxification
+	* ajaxified overview, working and workers
+* 0.5.2 - Bug fixes
+	* fixed some bugs
+* 0.5.3 - Helpers
+	* added some helpers to handlebarsjs
