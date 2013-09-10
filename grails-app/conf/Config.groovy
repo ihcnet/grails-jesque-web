@@ -1,6 +1,7 @@
 grails.views.default.codec="none" // none, html, base64
 grails.views.gsp.encoding="UTF-8"
 
+grails.plugin.jesque.web.nav.custom = ["Jobs"]
 
 // configuration for plugin testing - will not be included in the plugin zip
 grails {

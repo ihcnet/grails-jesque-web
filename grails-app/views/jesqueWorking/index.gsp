@@ -93,7 +93,7 @@
     {{/each}}
 </script>
 
-<g:javascript>
+<script type="text/javascript">
     var workingTemplate = null;
     function updateWorking() {
         $.ajax({
@@ -113,7 +113,7 @@
         $('#intervall').val(intervall)
         updateWorking();
     });
-</g:javascript>
+</script>
 
 </body>
 </html>

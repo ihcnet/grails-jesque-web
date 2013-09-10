@@ -136,7 +136,7 @@
     </tr>
     {{/each}}
 </script>
-<g:javascript>
+<script type="text/javascript">
     var failedTemplate = null;
     var queuesTemplate = null;
     var workingTemplate = null;
@@ -144,27 +144,27 @@
     function update() {
         $.ajax({
             url: "${g.createLink(controller: 'jesqueQueues', action: 'list')}",
-            success: function(results){
+            success: function (results) {
                 $('tbody.queues').html(queuesTemplate(results));
             },
-            beforeSend: function(){
+            beforeSend: function () {
             }
-        }).always(function(){
-            setTimeout(update, intervall)
-        });
+        }).always(function () {
+                    setTimeout(update, intervall)
+                });
         $.ajax({
             url: "${g.createLink(controller: 'jesqueFailed', action: 'count')}",
-            success: function(result) {
+            success: function (result) {
                 $('tfoot.failed').html(failedTemplate(result));
             }
         });
         $.ajax({
             url: "${g.createLink(controller: 'jesqueWorking', action: 'list')}",
-            success: function(results){
+            success: function (results) {
                 console.log(results)
                 $('tbody#workers').html(workingTemplate(results));
             },
-            beforeSend: function(){
+            beforeSend: function () {
             }
         });
     }
@@ -175,6 +175,6 @@
         $('#intervall').val(intervall)
         update();
     });
-</g:javascript>
+</script>
 </body>
 </html>
