@@ -114,8 +114,8 @@ var ifCond = function (v1, operator, v2, options) {
     }
 }
 
-var formatTimestamp = function (format, timestamp) {
-    return new Date(timestamp).toString(format)
+var formatTimestamp = function (timestamp) {
+    return new Date(parseInt(timestamp)).toLocaleString();
 }
 
 Handlebars.registerHelper('ifCond', ifCond);
