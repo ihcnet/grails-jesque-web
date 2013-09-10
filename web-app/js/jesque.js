@@ -114,6 +114,12 @@ var ifCond = function (v1, operator, v2, options) {
     }
 }
 
+var formateTimestamp = function(timestamp, options) {
+    return new Date(timestamp).toString("dd.MM.yyyy")
+}
+
 Handlebars.registerHelper('ifCond', ifCond);
 
 Handlebars.registerHelper('paginate', paginate);
+
+Handlebars.registerHelper('timestampDateFormat', formateTimestamp);
