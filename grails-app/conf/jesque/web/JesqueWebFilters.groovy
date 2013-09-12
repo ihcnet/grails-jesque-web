@@ -5,7 +5,7 @@ class JesqueWebFilters {
     def grailsApplication
 
     def filters = {
-        all(controller: '*', action: '*') {
+        all(controller: 'jesque*', action: '*') {
             before = {
                 if (grailsApplication.config.grails.jesque.enabled == false) {
                     render('Jesque is disabled')

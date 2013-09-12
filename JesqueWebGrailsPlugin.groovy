@@ -1,5 +1,5 @@
 class JesqueWebGrailsPlugin {
-    def version = "0.5.4"
+    def version = "0.5.4.1"
     def grailsVersion = "2.0.0 > *"
     def dependsOn = [jesque: '0.3.0 > *']
     def pluginExcludes = [
