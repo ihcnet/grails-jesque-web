@@ -25,29 +25,15 @@ grails.project.dependency.resolution = {
         mavenRepo "https://oss.sonatype.org/content/repositories/snapshots/"
     }
     dependencies {
-        test "org.gebish:geb-spock:0.9.0"
+        compile('commons-pool:commons-pool:1.6')
+        compile('commons-io:commons-io:2.4')
     }
     plugins {
-        compile(':redis:1.3.1') {
-            export = false
-        }
-        compile(':jesque:0.6.2') {
-            export = false
-        }
-        build(":tomcat:$grailsVersion")
-        compile(":hibernate:$grailsVersion") {
+        build(":release:3.0.1", ":rest-client-builder:1.0.3") {
             export = false
         }
 
-        test(":spock:0.7") {
-            export = false
-            exclude "spock-grails-support"
-        }
-        test(":geb:0.9.0") {
-            export = false
-        }
-
-        build(':release:2.0.2', ':rest-client-builder:1.0.2') {
+        compile(':jesque:0.9-SNAPSHOT') {
             export = false
         }
     }

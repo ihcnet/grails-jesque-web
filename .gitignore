@@ -1,7 +1,12 @@
-target
-stacktrace.log
+/target/
 plugin.xml
-*.ipr
-*.iml
+*.un~
+
 *.iws
-*.zip
+*.iml
+*.ipr
+stacktrace.log
+
+out/
+.idea/
+grails-jesque-web*.zip*
