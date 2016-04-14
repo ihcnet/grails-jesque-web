@@ -23,6 +23,7 @@ grails.project.dependency.resolution = {
         mavenRepo "http://download.java.net/maven/2/"
         mavenRepo "http://repository.jboss.com/maven2/"
         mavenRepo "https://oss.sonatype.org/content/repositories/snapshots/"
+        mavenRepo "https://raw.githubusercontent.com/ihcnet/grails-jesque/mvn-repo"
     }
     dependencies {
         compile('commons-pool:commons-pool:1.6')
@@ -33,7 +34,7 @@ grails.project.dependency.resolution = {
             export = false
         }
 
-        compile(':jesque:0.9-SNAPSHOT') {
+        compile(':jesque:0.9.4-SNAPSHOT') {
             export = false
         }
     }
