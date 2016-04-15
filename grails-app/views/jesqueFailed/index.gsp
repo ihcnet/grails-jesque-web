@@ -63,7 +63,7 @@
                         </dd>
                         <dt>Exception</dt>
                         <dd>
-                            <code>${job?.exceptionString ?: 'null'}</code>
+                            <code>${job?.throwableString ?: 'null'}</code>
                         </dd>
                         <dt>Error</dt>
                         <dd>
