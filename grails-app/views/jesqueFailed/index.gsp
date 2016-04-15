@@ -68,7 +68,7 @@
                         <dt>Error</dt>
                         <dd>
                             <a href="#" class="toggle" data-target="#exception-${index}">${job?.error ?: 'no message'}</a>
-                            <pre id="exception-${index}" class="hidden">${job?.exception}<jesque:asBacktrace failure="${job}"/></pre>
+                            <pre id="exception-${index}" class="hidden">${job?.throwable}<jesque:asBacktrace failure="${job}"/></pre>
                         </dd>
                     </dl>
 
