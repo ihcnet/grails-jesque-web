@@ -14,7 +14,7 @@ class JesqueKeysService {
         keysDao.keyInfos
     }
 
-    def getKeyInfo(String key, long offset, long max){
+    def getKeyInfo(String key, int offset, int max){
         keysDao.getKeyInfo(key, offset, max)
     }
 }
